@@ -1,14 +1,13 @@
 import { Container } from "@chakra-ui/react";
+import AddWork from "../components/AddWork";
 import Auth from "../components/Auth";
-import TodoList from "../components/TodoList";
-import WorkList from "../components/WorkList";
 
-export default function Home() {
+export default function AddWorkBig() {
     return (
         <Container maxW="7xl">
             <Auth />
-            <TodoList />
-            <WorkList/>
+            <AddWork />
         </Container>
     );
 }
+
