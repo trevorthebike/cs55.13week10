@@ -14,16 +14,15 @@ import { addWork } from "../api/work";
 const AddWork = () => {
     const [mytitle, setTitle] = React.useState("");
     const [mydescription, setDescription] = React.useState("");
-    const [mystatus, setStatus] = React.useState("pending");
-    //const [isLoading, setIsLoading] = React.useState(false);
+    const [myestimatedtime, SetEstimatedtime] = React.useState("");
     const toast = useToast();
 
     const { isLoggedIn, user } = useAuth();
 
-    const handleTodoCreate = async () => {
+    const handleworkCreate = async () => {
     if (!isLoggedIn) {
         toast({
-        title: "You must be logged in to create a todo",
+        title: "You must be logged in to create a work",
         status: "error",
         duration: 9000,
         isClosable: true,
@@ -31,18 +30,19 @@ const AddWork = () => {
     return;
     }
 
-    const todo = {
+    const work = {
     mytitle,
     mydescription,
-    mystatus,
+    myestimatedtime,
     userId: user.uid,
     };
 
-    await addWork(todo);
+    await addWork(work);
 
     setTitle("");
     setDescription("");
-    toast({ title: "Todo created successfully", status: "success" });
+    SetEstimatedtime("");
+    toast({ title: "work created successfully", status: "success" });
     };
 
     return (
@@ -52,21 +52,23 @@ const AddWork = () => {
         <Input
         placeholder="Title"
         value={mytitle}
-        onChange={(e) => setTitle(e.target.value)}
-        />
+        onChange={(e) => setTitle(e.target.value)} />
 
         <Textarea
         placeholder="Description"
         value={mydescription}
-        onChange={(e) => setDescription(e.target.value)}
-        />
+        onChange={(e) => setDescription(e.target.value)}/>
+
+<Textarea
+        placeholder="Estimated Time to Complete"
+        value={myestimatedtime}
+        onChange={(e) => SetEstimatedtime(e.target.value)}/>
         
         <Button
-        onClick={() => handleTodoCreate()}
-        //disabled={mytitle.length < 1 || mydescription.length < 1 || isLoading}
+        onClick={() => handleworkCreate()}
         colorScheme="teal"
-        variant="solid"
-        >
+        variant="solid" >
+
         Add
         </Button>
     </Stack>

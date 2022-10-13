@@ -7,7 +7,7 @@ import {
     deleteDoc,
 } from "firebase/firestore";
 
-const addWork = async ({ userId, mytitle, mydescription, mystatus  }) => {
+const addWork = async ({ userId, mytitle, mydescription, myestimatedtime  }) => {
 try {
         await addDoc(
             collection(db, "work"),
@@ -15,6 +15,7 @@ try {
                 user: userId,
                 title: mytitle,
                 description: mydescription,
+                estimatedtime: myestimatedtime,
                 createdAt: new Date().getTime(),
             }
         )

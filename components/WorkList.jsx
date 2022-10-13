@@ -67,6 +67,7 @@ const WorkList = () => {
             </Badge>
             </Heading>
             <Text>{todo.description}</Text>
+            <Text>{todo.estimatedtime}</Text>
             </Box>
             ))}
             </SimpleGrid>
