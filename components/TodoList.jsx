@@ -49,7 +49,7 @@ const TodoList = () => {
 
     return (
         <Box mt={5}>
-            <Text fontsize ={"xl"}> Todo List </Text>
+            <Text fontSize={"xl"}> Todo List </Text>
             <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8}>
             {todo &&
             todo.map((todo) => (
