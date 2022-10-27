@@ -8,15 +8,15 @@ import {
     deleteDoc,
 } from "firebase/firestore";
 
-const addTodo = async ({ userId, mytitle, mydescription, mystatus  }) => {
+const addevent = async ({ userId, mytitle, mydescription, myestimatedtime  }) => {
 try {
         await addDoc(
-            collection(db, "todo"),
+            collection(db, "event"),
             {
                 user: userId,
                 title: mytitle,
                 description: mydescription,
-                status: mystatus,
+                estimatedtime: myestimatedtime,
                 createdAt: new Date().getTime(),
             }
         )
@@ -25,35 +25,25 @@ try {
     }
 }
 
-const toggleTodoStatus = async ({ docId, status }) => {
+const deleteevent = async (docId) => {
     try {
-    const todoRef = doc(db, "todo", docId);
-    await updateDoc(todoRef, {
-    status: status,
-    });
-    } catch (err) {
-    console.log(err);
-    }
-};
-
-const deleteTodo = async (docId) => {
-    try {
-    const todoRef = doc(db, "todo", docId);
+    const todoRef = doc(db, "event", docId);
     await deleteDoc(todoRef);
     } catch (err) {
     console.log(err);
     }
 };
-
-const updateTodo = async( docId) => {
+const updateevent = async( docId) => {
     try{
-    const todoRef = doc(db, "todo", docId);
-    if(!todoRef.empty){
+    const eventRef = doc(db, "event", docId);
+    if(!eventRef.empty){
         let newtitle = prompt("Title: ")
         let newdescription = prompt("Description: ")
-        await updateDoc(todoRef, {
+        let newtime = prompt("Estimated Time to Complete: ")
+        await updateDoc(eventRef, {
             "title": newtitle,
-            "description": newdescription
+            "description": newdescription,
+            "estimatedtime":newtime
         });
     }
     } catch (err) {
@@ -61,4 +51,4 @@ const updateTodo = async( docId) => {
     }   
 };
 
-export { addTodo, updateTodo, toggleTodoStatus, deleteTodo };
+export { addevent, deleteevent, updateevent };

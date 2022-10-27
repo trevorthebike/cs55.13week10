@@ -31,20 +31,12 @@ const Auth = () => {
         });
     };
     return (
-        <Box display = "flex" alignItems="center" justifyContent="space-between">
-            <Box>
-                <Link href="/add-todo">Add To Do</Link>
-            </Box>
-            <Box>
-                <Link href="/add-work">Add Work</Link>
-            </Box>
-            <Box>
+        
+        <Box display = "flex" alignItems="center" justifyContent="space-between" color="white" background = "black">
+             <Box>
               <Link href="/"> List all Todos</Link>
             </Box>
             <Box textAlign="right">
-                <Button onClick={() => toggleColorMode()}>
-                    {colorMode == "dark" ? <FaSun /> : <FaMoon />}
-                </Button>
                 {" "}
                 {isLoggedIn && (
                 <>

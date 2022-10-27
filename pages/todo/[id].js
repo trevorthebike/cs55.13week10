@@ -29,9 +29,6 @@ const TodoItem = ({itemData}) => {
                 {itemData.description}
             </Text>
             <Text>
-                {itemData.status}
-            </Text>
-            <Text>
                 {itemData.createdAt}
             </Text>
         </Box>

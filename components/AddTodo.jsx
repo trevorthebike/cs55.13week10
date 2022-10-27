@@ -65,21 +65,6 @@ const AddTodo = () => {
         onChange={(e) => setDescription(e.target.value)}
         />
 
-        <Select value={mystatus} onChange={(e) => setStatus(e.target.value)}>
-        <option
-        value={"pending"}
-        style={{ color: "yellow", fontWeight: "bold" }}
-        >
-        Pending ⌛
-        </option>
-        <option
-        value={"completed"}
-        style={{ color: "green", fontWeight: "bold" }}
-        >
-        Completed ✅
-        </option>
-        </Select>
-
         <Button
         onClick={() => handleTodoCreate()}
         disabled={mytitle.length < 1 || mydescription.length < 1 || isLoading}

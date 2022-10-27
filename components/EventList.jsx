@@ -5,54 +5,54 @@ import {
     SimpleGrid,
     Text,
     useToast,
-    IconButton,
+    IconButton
     } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import useAuth from "../hooks/useAuth";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { db } from "../firebase";
 import { FaToggleOff, FaToggleOn, FaTrash, FaPlusSquare } from "react-icons/fa";
-import { deleteTodo, updateTodo} from "../api/todo";
+import { deleteevent, updateevent} from "../api/event";
 
-const todoList = () => {
-    const [todo, settodo] = React.useState([]);
+const eventList = () => {
+    const [event, setevent] = React.useState([]);
 
     const {  user } = useAuth();
     const toast = useToast();
     useEffect(() => {
         if (!user) {
-            settodo([]);
+            setevent([]);
         return;
         }
-        const q = query(collection(db, "todo"), where("user", "==", user.uid));
+        const q = query(collection(db, "event"), where("user", "==", user.uid));
         onSnapshot(q, (querySnapchot) => {
         let ar = [];
         querySnapchot.docs.forEach((doc) => {
         ar.push({ id: doc.id, ...doc.data() });
         });
-        settodo(ar);
+        setevent(ar);
         });
     }, [user]);
 
-    const handleTodoDelete = async (id) => {
-        if (confirm("Are you sure you wanna delete this todo?")) {
-            deleteTodo(id);
-            toast({ title: "todo deleted successfully", status: "success" });
+    const handleeventDelete = async (id) => {
+        if (confirm("Are you sure you wanna delete this event?")) {
+            deleteevent(id);
+            toast({ title: "event deleted successfully", status: "success" });
         }
     };
     
-    const handletodoUpdate = async (id) => {
-        updateTodo(id);
+    const handleeventUpdate = async (id) => {
+        updateevent(id);
         console.log("first")
     };
 
 
     return (
         <Box mt={5}>
-            <Text fontsize ={"xl"}> Todo List </Text>
+            <Text>EventList</Text>
             <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8}>
-            {todo &&
-            todo.map((todo) => (
+            {event &&
+            event.map((event) => (
             <Box
             p={3}
             background = "lightblue"
@@ -60,13 +60,14 @@ const todoList = () => {
             transition="0.2s"
             _hover={{ boxShadow: "sm" }}
             >
-
             <Heading as="h1" fontSize={"xl"}>
+
             <IconButton
-            color="red.500"
+            size = 'lg'
+            color="red"
             float="right"
-            onClick={() => handleTodoDelete(todo.id)}
-            icon = {<FaTrash />}
+            onClick={() => handleeventDelete(event.id)}
+            icon={<FaTrash/>}
             >
             </IconButton>
 
@@ -75,20 +76,21 @@ const todoList = () => {
             color="yellow"
             background = "black"
             float="right"
-            onClick={() => handletodoUpdate(todo.id)}
+            onClick={() => handleeventUpdate(event.id)}
             icon={<FaPlusSquare/>}
             >
             </IconButton>
 
-            {todo.title}{" "}
-            </Heading>
+            {"Event Title: "}{event.title}
 
-            <Text>{"Todo Description: "}{todo.description}</Text>
-            
+            </Heading>
+            <Text>{"Event Description: "}{event.description}</Text>
+            <Text>{"Event Estimated Time: "}{event.estimatedtime}</Text>
+          
             </Box>
             ))}
             </SimpleGrid>
         </Box>
     );
 };
-export default todoList;
+export default eventList;

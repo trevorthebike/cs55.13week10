@@ -1,12 +1,12 @@
 import { Container } from "@chakra-ui/react";
-import AddWork from "../components/AddWork";
+import AddEvent from "../components/AddEvent";
 import Auth from "../components/Auth";
 
-export default function AddWorkBig() {
+export default function AddEvents() {
     return (
         <Container maxW="7xl">
             <Auth />
-            <AddWork />
+            <AddEvent />
         </Container>
     );
 }
