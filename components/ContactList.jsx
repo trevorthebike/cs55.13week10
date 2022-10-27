@@ -16,8 +16,7 @@ import { deletecontact, updatecontact} from "../api/contact";
 
 const contactList = () => {
     const [contact, setcontact] = React.useState([]);
-
-    const {  user } = useAuth();
+    const {user} = useAuth();
     const toast = useToast();
     useEffect(() => {
         if (!user) {
@@ -48,7 +47,7 @@ const contactList = () => {
 
 
     return (
-        <Box mt={5}>
+        <Box key={contact.id} mt={5}>
             <Text>contactList</Text>
             <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8}>
             {contact &&
