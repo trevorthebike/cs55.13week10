@@ -47,12 +47,12 @@ const contactList = () => {
 
 
     return (
-        <Box key={contact.id} mt={5}>
+        <Box mt={5}>
             <Text>contactList</Text>
             <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8}>
             {contact &&
             contact.map((contact) => (
-            <Box
+            <Box key={contact.id}
             p={3}
             background = "lightblue"
             boxShadow="2xl"
