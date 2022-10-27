@@ -54,7 +54,7 @@ const EventList = () => {
             {event &&
             event.map((event) => (
             <Box 
-            key={contact.id}
+            key={event.id}
             p={3}
             background = "lightblue"
             boxShadow="2xl"
