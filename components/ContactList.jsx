@@ -14,7 +14,7 @@ import { db } from "../firebase";
 import { FaToggleOff, FaToggleOn, FaTrash, FaPlusSquare } from "react-icons/fa";
 import { deletecontact, updatecontact} from "../api/contact";
 
-const contactList = () => {
+const ContactList = () => {
     const [contact, setcontact] = React.useState([]);
     const {user} = useAuth();
     const toast = useToast();
@@ -48,11 +48,12 @@ const contactList = () => {
 
     return (
         <Box mt={5}>
-            <Text>contactList</Text>
+            <Text>ContactList</Text>
             <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8}>
             {contact &&
             contact.map((contact) => (
-            <Box key={contact.id}
+            <Box 
+            key={contact.id}
             p={3}
             background = "lightblue"
             boxShadow="2xl"
@@ -90,4 +91,4 @@ const contactList = () => {
         </Box>
     );
 };
-export default contactList;
+export default ContactList;

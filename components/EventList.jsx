@@ -14,7 +14,7 @@ import { db } from "../firebase";
 import { FaToggleOff, FaToggleOn, FaTrash, FaPlusSquare } from "react-icons/fa";
 import { deleteevent, updateevent} from "../api/event";
 
-const eventList = () => {
+const EventList = () => {
     const [event, setevent] = React.useState([]);
 
     const {  user } = useAuth();
@@ -53,7 +53,8 @@ const eventList = () => {
             <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8}>
             {event &&
             event.map((event) => (
-            <Box
+            <Box 
+            key={contact.id}
             p={3}
             background = "lightblue"
             boxShadow="2xl"
@@ -93,4 +94,4 @@ const eventList = () => {
         </Box>
     );
 };
-export default eventList;
+export default EventList;

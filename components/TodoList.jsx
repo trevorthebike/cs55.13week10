@@ -14,7 +14,7 @@ import { db } from "../firebase";
 import { FaToggleOff, FaToggleOn, FaTrash, FaPlusSquare } from "react-icons/fa";
 import { deleteTodo, updateTodo} from "../api/todo";
 
-const todoList = () => {
+const TodoList = () => {
     const [todo, settodo] = React.useState([]);
 
     const {  user } = useAuth();
@@ -54,6 +54,7 @@ const todoList = () => {
             {todo &&
             todo.map((todo) => (
             <Box
+            key={todo.id}
             p={3}
             background = "lightblue"
             boxShadow="2xl"
@@ -91,4 +92,4 @@ const todoList = () => {
         </Box>
     );
 };
-export default todoList;
+export default TodoList;
